@@ -169,10 +169,21 @@ void row::remove_one()
   }
 }
 /* ------------------------------------------------------ */
-//int main(int argc, char * argv[])
-int main(void)
+void set_param_value(int & var, char * param)
+{
+  char * err_check;
+  int val = strtol(param, &err_check, 10);
+
+  if(err_check == param && val == 0)		// conversion failed - probably bad param -> use default value
+    return;
+  else
+    var = val;
+}
+/* ------------------------------------------------------ */
+int main(int argc, char * argv[])
 {
   WINDOW * w;
+  int rows = 150, len = 30, delay = 500;
   
   w = initscr();    // init okna
   cbreak();         // okamzity vstup pro program
@@ -185,9 +196,14 @@ int main(void)
   init_pair(1, COLOR_GREEN, COLOR_BLACK);
   attron(COLOR_PAIR(1));
 
-  //matrix m(75, 20, 1000, w);
-  //matrix m(95, 20, 1000, w);
-  matrix m(120, 20, 1000, w);
+  if(argc > 1)
+    set_param_value(rows, argv[1]);
+  if(argc > 2)
+    set_param_value(len, argv[2]);
+  if(argc > 3)
+    set_param_value(delay, argv[3]);
+
+  matrix m(rows, len, delay, w);
 
   while(1) {
     m.show();
