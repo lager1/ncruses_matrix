@@ -215,5 +215,9 @@ int main(int argc, char * argv[])
   attroff(COLOR_PAIR(1));
   endwin();
 
+  printf("usage: \n");
+  printf("./ncurses_matrix [column count] [column length] [delay in ms]\n");
+  printf("source code available at https://github.com/lager1/ncruses_matrix\n");
+
   return 0;  
 }
