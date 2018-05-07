@@ -14,6 +14,6 @@ g++ main.cpp -lncurses -o ncurses_matrix
 ```
 
 # demo
-[demo on youtube](https://www.youtube.com/watch?v=yBv6c\_ttJO4
+[demo on youtube](https://www.youtube.com/watch?v=yBv6c\_ttJO4)
 
 # Enjoy & feel free to modify!
