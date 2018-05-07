@@ -9,7 +9,7 @@ ncurses development library
 ```
 git clone https://github.com/lager1/ncruses_matrix.git
 cd ncruses_matrix
-g++ main.cpp
+g++ main.cpp -lncurses
 ./a.out
 ```
 # Enjoy & feel free to modify!
