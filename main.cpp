@@ -139,7 +139,7 @@ void row::print_one()
 char row::gen_rand()
 {
   char c = rand() % 127;
-  while(c <= 33)    // nechceme " "
+  while(c <= 32)    // avoid using special characters
     c = rand() % 127;
   
   return c; 
