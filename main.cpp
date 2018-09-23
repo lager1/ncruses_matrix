@@ -183,7 +183,9 @@ void set_param_value(int & var, char * param)
 int main(int argc, char * argv[])
 {
   WINDOW * w;
-  int rows = 150, len = 30, delay = 500;
+  int columns = 150, len = 30, delay = 500;
+  bool wide_chars = false;
+  int c;
   
   w = initscr();    // init okna
   cbreak();         // okamzity vstup pro program
@@ -196,14 +198,24 @@ int main(int argc, char * argv[])
   init_pair(1, COLOR_GREEN, COLOR_BLACK);
   attron(COLOR_PAIR(1));
 
-  if(argc > 1)
-    set_param_value(rows, argv[1]);
-  if(argc > 2)
-    set_param_value(len, argv[2]);
-  if(argc > 3)
-    set_param_value(delay, argv[3]);
+  while ((c = getopt (argc, argv, "c:l:d:w")) != -1) {
+    switch(c) {
+      case 'c':
+	set_param_value(columns, optarg);
+      break;
+      case 'l':
+	set_param_value(len, optarg);
+      break;
+      case 'd':
+	set_param_value(delay, optarg);
+      break;
+      case 'w':
+	wide_chars = true;
+      break;
+    }
+  }
 
-  matrix m(rows, len, delay, w);
+  matrix m(columns, len, delay, w);
 
   while(1) {
     m.show();
@@ -216,7 +228,11 @@ int main(int argc, char * argv[])
   endwin();
 
   printf("usage: \n");
-  printf("./ncurses_matrix [column count] [column length] [delay in ms]\n");
+  printf("./ncurses_matrix [-cldw]\n");
+  printf("-c count 	column count\n");
+  printf("-l length 	column length\n");
+  printf("-d delay 	delay in ms\n");
+  printf("-w 		use unicode characters\n");
   printf("source code available at https://github.com/lager1/ncruses_matrix\n");
 
   return 0;  
