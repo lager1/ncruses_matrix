@@ -1,2 +1,2 @@
 all:
-	g++ main.cpp -lncurses -o ncurses_matrix
+	g++ main.cpp -lncursesw -o ncurses_matrix
