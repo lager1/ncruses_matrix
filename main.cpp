@@ -215,7 +215,18 @@ int main(int argc, char * argv[])
     }
   }
 
-  matrix m(columns, len, delay, w);
+  w = initscr();    // init okna
+  cbreak();         // okamzity vstup pro program
+  noecho();         // nechceme vypisovat uzivatelsky vstup ?
+  srand((unsigned)time(NULL));  // generator nahodnych cisel
+  nodelay(w, true); // neblokujici vstup
+  curs_set(0);      // neviditelny kurzor
+
+  start_color();
+  init_pair(1, COLOR_GREEN, COLOR_BLACK);
+  attron(COLOR_PAIR(1));
+
+  matrix m(columns, len, delay, wide_chars, w);
 
   while(1) {
     m.show();
