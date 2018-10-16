@@ -187,16 +187,7 @@ int main(int argc, char * argv[])
   bool wide_chars = false;
   int c;
   
-  w = initscr();    // init okna
-  cbreak();         // okamzity vstup pro program
-  noecho();         // nechceme vypisovat uzivatelsky vstup ?
-  srand((unsigned)time(NULL));  // generator nahodnych cisel
-  nodelay(w, true); // neblokujici vstup
-  curs_set(0);      // neviditelny kurzor
-
-  start_color();
-  init_pair(1, COLOR_GREEN, COLOR_BLACK);
-  attron(COLOR_PAIR(1));
+  setlocale(LC_CTYPE, "");
 
   while ((c = getopt (argc, argv, "c:l:d:w")) != -1) {
     switch(c) {
